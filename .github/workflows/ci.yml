@@ -1,20 +1,41 @@
-  name: Detect Push on Main
+    name: Detect Push on Main
 
-  #Déclencheur pour les événements "push" sur la branche "main"
-  on:
-    push:
-      branches:
-        - master
+    #Déclencheur pour les événements "push" sur la branche "main"
+    on:
+      push:
+        branches:
+          - master
 
-  jobs:
-    build:
-      runs-on: ubuntu-latest
+    jobs:
+      build:
+        runs-on: ubuntu-latest
 
-      steps:
-        # Étape 1 : Vérification du code source
-        - name: Checkout code
-          uses: actions/checkout@v3
+        steps:
+          # Étape 1 : Vérification du code source
+          - name: Checkout code
+            uses: actions/checkout@v3
 
-        # Étape 2 : Afficher un message
-        - name: Print a message
-          run: echo "A push has been detected on the main branch!"
+          # Étape 2 : Afficher un message
+          - name: Print a message
+            run: echo "A push has been detected on the main branch!"
+
+          # Étape 3 : Mettre à jour les paquets et installer OpenSSH
+          - name: Update packages and install OpenSSH
+            run: |
+              sudo apt-get update && sudo apt-get upgrade -y
+              sudo apt-get install -y openssh-client
+
+          # Étape 4 : Se connecter via SSH et effectuer les commandes
+          - name: SSH and deploy
+            env:
+              HOST: ${{ secrets.SSH_HOST }}
+              USER: ${{ secrets.SSH_USER }}
+              WORK_DIR: ${{ secrets.WORK_DIR }}
+              START_COMMAND: ${{ secrets.START_COMMAND }}
+            run: |
+              ssh -o StrictHostKeyChecking=no $USER@$HOST << EOF
+                cd $WORK_DIR
+                git pull
+                pkill -f "$START_COMMAND" || true # Arrête l'application si elle tourne
+                nohup $START_COMMAND > app.log 2>&1 &
+              EOF

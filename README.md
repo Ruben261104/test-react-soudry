@@ -1,3 +1,9 @@
+echo "Modification pour tester la pipeline" >> README.md
+git add README.md
+git commit -m "Test pipeline GitHub Actions"
+git push origin main
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
