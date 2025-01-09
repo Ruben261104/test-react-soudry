@@ -45,8 +45,8 @@
               ssh -o StrictHostKeyChecking=no ruben2@16.170.202.113 << EOF
                 cd /home/ruben2/www/test-react-soudry
                 git pull
-              
                 docker-compose down
+                docker system prune -af
                 docker-compose build
                 docker-compose up -d
               EOF
