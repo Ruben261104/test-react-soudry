@@ -31,11 +31,8 @@
               HOST: ${{ secrets.SSH_HOST }}
               USER: ${{ secrets.SSH_USER }}
               WORK_DIR: ${{ secrets.WORK_DIR }}
-              START_COMMAND: ${{ secrets.START_COMMAND }}
             run: |
               ssh -o StrictHostKeyChecking=no $USER@$HOST << EOF
                 cd $WORK_DIR
                 git pull
-                pkill -f "$START_COMMAND" || true # Arrête l'application si elle tourne
-                nohup $START_COMMAND > app.log 2>&1 &
               EOF
