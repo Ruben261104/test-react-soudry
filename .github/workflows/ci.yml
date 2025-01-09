@@ -25,6 +25,15 @@
               sudo apt-get update && sudo apt-get upgrade -y
               sudo apt-get install -y openssh-client
 
+         # Étape 4 : Ajout de la clé privée pour la connexion SSH
+          - name: Setup SSH Key
+            env:
+              PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+            run: |
+              mkdir -p ~/.ssh
+              echo "$PRIVATE_KEY" | base64 -d > ~/.ssh/id_rsa
+              chmod 600 ~/.ssh/id_rsa
+
           # Étape 4 : Se connecter via SSH et effectuer les commandes
           - name: SSH and deploy
             env:
