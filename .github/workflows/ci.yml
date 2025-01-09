@@ -42,8 +42,8 @@
               USER: ${{ secrets.SSH_USER }}
               WORK_DIR: ${{ secrets.WORK_DIR }}
             run: |
-              ssh -o StrictHostKeyChecking=no admin@16.170.202.113 << EOF
-                cd /home/admin/www/test-react-soudry
+              ssh -o StrictHostKeyChecking=no ruben2@16.170.202.113 << EOF
+                cd /home/ruben2/www/test-react-soudry
                 git pull
               
                 docker-compose down
