@@ -48,7 +48,7 @@
                 docker-compose down
                 docker system prune -af
                 docker-compose build
-                docker-compose up -d
+                docker-compose up -d 
               EOF
           # Étape 6 : Suppression des fichiers SSH
           - name: Clean SSH Key
