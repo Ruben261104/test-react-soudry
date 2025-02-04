@@ -50,7 +50,7 @@
               USER: ${{ secrets.SSH_USER }}
               WORK_DIR: ${{ secrets.WORK_DIR }}
             run: |
-              ssh -o StrictHostKeyChecking=no ruben2@16.170.202.113 << EOF
+              ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
                 cd /home/ruben2/www/test-react-soudry
                 git pull
                 chmod +x backup_restore.sh
