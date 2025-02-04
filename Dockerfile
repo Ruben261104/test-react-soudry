@@ -1,7 +1,7 @@
 # Étape de build
 FROM node:16 as build
 
-WORKDIR /app
+WORKDIR /www/test-react-soudry
 
 COPY package.json ./
 RUN yarn install --frozen-lockfile
@@ -14,7 +14,7 @@ FROM node:16-alpine
 
 RUN yarn global add serve
 
-WORKDIR /app
+WORKDIR /www/test-react-soudry
 
 COPY --from=build /app/build .
 
