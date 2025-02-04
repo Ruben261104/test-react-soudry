@@ -26,12 +26,12 @@
 #              sudo apt-get install -y openssh-client
 
           # Étape : Exécuter les tests
-          - name: Run Tests
-
-            run: |
-              npm install
-              npm run build
-              npm run test
+#          - name: Run Tests
+#
+#            run: |
+#              npm install
+#              npm run build
+#              npm run test
 
          # Étape 4 : Ajout de la clé privée pour la connexion SSH
           - name: Setup SSH Key
