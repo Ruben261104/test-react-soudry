@@ -54,12 +54,14 @@
                 cd /home/ruben2/www/test-react-soudry
                 git checkout master
                 git pull origin master
-                chmod +x backup_restore.sh
-                ./backup_restore.sh
+                chmod +x backup_save.sh
+                ./backup_save.sh
                 docker-compose down
                 docker system prune -af
                 docker-compose build
                 docker-compose up -d 
+                chmod +x backup_restore.sh
+                ./backup_restore.sh
               EOF
           # Étape 6 : Suppression des fichiers SSH
           - name: Clean SSH Key
