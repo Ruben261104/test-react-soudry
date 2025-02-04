@@ -9,5 +9,5 @@ CREATE TABLE IF NOT EXISTS users (
 -- Insérer quelques utilisateurs pour le test
 INSERT INTO users (name, email) VALUES
                                     ('Ruben', 'ruben@example.com'),
-                                    ('Mickael', 'mickael@example.com')
+                                    ('Mickael2', 'mickael@example.com')
     ON DUPLICATE KEY UPDATE name=name; -- Évite les doublons si le script est relancé
