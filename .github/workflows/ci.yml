@@ -52,7 +52,8 @@
             run: |
               ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
                 cd /home/ruben2/www/test-react-soudry
-                git pull
+                git checkout master
+                git pull origin master
                 chmod +x backup_restore.sh
                 ./backup_restore.sh
                 docker-compose down
