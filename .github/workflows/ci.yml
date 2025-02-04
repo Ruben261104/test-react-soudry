@@ -25,13 +25,13 @@
 #              sudo apt-get update
 #              sudo apt-get install -y openssh-client
 
-#          # Étape : Exécuter les tests
-#          - name: Run Tests
-#
-#            run: |
-#              npm install
-#              npm run build
-#              npm run test
+          # Étape : Exécuter les tests
+          - name: Run Tests
+
+            run: |
+              npm install
+              npm run build
+              npm run test
 
          # Étape 4 : Ajout de la clé privée pour la connexion SSH
           - name: Setup SSH Key
@@ -54,12 +54,10 @@
                 cd /home/ruben2/www/test-react-soudry
                 git checkout master
                 git pull origin master
-                docker exec mysql-db mysqldump -uroot -proot mydatabase > "../../backups/backup.sql"
                 docker-compose down
                 docker system prune -af
                 docker-compose build
                 docker-compose up -d 
-                docker exec mysql-db mysqldump -uroot -proot mydatabase < "../../backups/backup.sql"
               EOF
           # Étape 6 : Suppression des fichiers SSH
           - name: Clean SSH Key
