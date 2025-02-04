@@ -16,7 +16,7 @@ RUN yarn global add serve
 
 WORKDIR /app
 
-COPY --from=build /app/build /app
+COPY --from=build /app/build .
 
 EXPOSE 5000
 

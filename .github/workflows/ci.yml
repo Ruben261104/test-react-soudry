@@ -53,8 +53,6 @@
               ssh -o StrictHostKeyChecking=no ruben2@16.170.202.113 << EOF
                 cd /home/ruben2/www/test-react-soudry
                 git pull
-                chmod +x backup_restore.sh
-                ./backup_restore.sh
                 docker-compose down
                 docker system prune -af
                 docker-compose build
@@ -67,3 +65,5 @@
 
 
 
+    #chmod +x backup_restore.sh
+    #./backup_restore.sh
